@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "526544275789",
+    "firebase_url": "https://holbegram-4538c-default-rtdb.firebaseio.com",
+    "project_id": "holbegram-4538c",
+    "storage_bucket": "holbegram-4538c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526544275789:android:bff182b835cf2ddb758f04",
+        "android_client_info": {
+          "package_name": "com.claudiaTech.holbegram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcIqujYULKNLcedFgYE5if2wm2BbQdbd0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526544275789:android:8e09e4b5b36258fe758f04",
+        "android_client_info": {
+          "package_name": "com.example.holbegram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcIqujYULKNLcedFgYE5if2wm2BbQdbd0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
