@@ -7,19 +7,22 @@ class AuthMethode {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<String> login({required String email,required String password,}) async {
-    
-    if (email.isEmpty || password.isEmpty) 'Please fill all the fields';
 
-    try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-      return 'success';
-    } on FirebaseAuthException catch (e) {
-      return e.code;
-    } catch (e) {
-      return 'Sign-in error: $e';
+  Future<String> login({
+    required String email,
+    required String password,
+    }) async {
+      if (email.isEmpty || password.isEmpty) return 'Please fill all the fields';
+      try {
+        var result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+        // ignore: unused_local_variable
+        var user = result.user;
+        return 'success';
+      } catch (e) {
+        return 'Sign-in error: $e';
+      }
     }
-  }
+
 
   Future<String> signUpUser({
     required String email,
@@ -27,8 +30,7 @@ class AuthMethode {
     required String username,
     Uint8List? file,
     }) async {
-      if (email.isEmpty || password.isEmpty || username.isEmpty) 'Please fill all the fields';
-  
+      if (email.isEmpty || password.isEmpty || username.isEmpty) return 'Please fill all the fields';
       try {
         UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
           email: email,
@@ -49,10 +51,25 @@ class AuthMethode {
           searchKey: '',
         );
 
-        await _firestore.collection('users').doc(users.uid).set(users.toJson());
+        await _firestore.collection('users').doc(user.uid).set(users.toJson());
         return 'success';
         } catch (e) {
-            return 'Sign-in error: $e';
+          return 'Sign-in error: $e';
         }
     }
+
+
+  Future<Users?> getUserDetails() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        final userData = await _firestore.collection('users').doc(user.uid).get();
+        return Users.fromSnap(userData);
+      }
+      return null;
+    } catch (e) {
+      // print('Sign-in error: $e');
+      return null;
+    }
+  }
 }

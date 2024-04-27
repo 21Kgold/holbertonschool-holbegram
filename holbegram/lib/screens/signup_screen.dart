@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:holbegram/screens/login_screen.dart';
 import 'package:holbegram/widgets/text_field.dart';
+import 'package:holbegram/screens/auth/upload_image_screen.dart';
 
 // Stateful widgets can change over time
 class SignUp extends StatefulWidget {
@@ -63,10 +64,8 @@ class _SignUpState extends State<SignUp> {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(children: [
               SizedBox(height: 28.0,),
-
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25),
-                
                 child: Text(
                   'Sign up to see photos and videos from your friends',
                   textAlign: TextAlign.center,
@@ -142,7 +141,28 @@ class _SignUpState extends State<SignUp> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Color.fromARGB(218, 226, 37, 24),)
                   ),
-                  onPressed: () => {},
+                  onPressed: () {
+                        String email = emailController.text;
+                        String username = usernameController.text;
+                        String password = passwordController.text;
+                        String passwordConfirm = passwordConfirmController.text;
+                        if (password == passwordConfirm) {
+                          
+                              Navigator.push(
+                                // ignore: use_build_context_synchronously
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddPicture(
+                                    email: email,
+                                    password: password,
+                                    username: username,
+                                )));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Passwords don't match, try again"),
+                          ));
+                        }
+                      },
                   child: Text(
                     'Sign up',
                     style: TextStyle(color: Colors.white),),),

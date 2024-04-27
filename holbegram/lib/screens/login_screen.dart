@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:holbegram/methods/auth_methods.dart';
 import 'package:holbegram/screens/signup_screen.dart';
 import 'package:holbegram/widgets/text_field.dart';
-import 'package:holbegram/screens/home_screen.dart';
+import 'package:holbegram/screens/home.dart';
+
 
 // Stateful widgets can change over time
 class LoginScreen extends StatefulWidget {
@@ -81,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () { setState(() {
                     _passwordVisible = !_passwordVisible;
                   });
-                 }
+                  }
                 ),
               ),
               SizedBox(height: 28.0,),
@@ -96,11 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     String email = emailController.text;
                     String password = passwordController.text;
                     String result = await AuthMethode().login(email: email, password: password);
-                      if (result == 'success' && context.mounted) {
+                      if (result == 'success') {
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Login'),),);
-                        // Home is not available, so a dummy Home was created
                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Home(),),);
-                      } else if (context.mounted) {
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Failed: $result'),),);
                       }
                   },

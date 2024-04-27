@@ -2,17 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class Users {
-  String uid;
-  String email;
-  String username;
-  String bio;
-  String photoUrl;
-  List<dynamic> followers;
-  List<dynamic> following;
-  List<dynamic> posts;
-  List<dynamic> saved;
-  String searchKey;
-
   Users({
     required this.uid,
     required this.email,
@@ -25,6 +14,17 @@ class Users {
     required this.saved,
     required this.searchKey,
   });
+
+  String uid;
+  String email;
+  String username;
+  String bio;
+  String photoUrl;
+  List<dynamic> followers;
+  List<dynamic> following;
+  List<dynamic> posts;
+  List<dynamic> saved;
+  String searchKey;
 
 // Convert a DocumentSnapshot from Firestore into a Users object
   static Users fromSnap(DocumentSnapshot snap) {
